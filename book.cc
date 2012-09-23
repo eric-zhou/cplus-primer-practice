@@ -53,7 +53,19 @@ protected:
 };
 
 class DiscItem: public ItemBook {
+public:
+    DiscItem(const std::string &book = "", double sales_price = 0.0, 
+        double qty = 0, double discRate = 0) :
+        ItemBook(book, sales_price), quantity(qty), discount(discRate) {
+    }
+
+    //pure virtual function
+    double getPrice(std::size_t) const = 0;
+private:
+    std::size_t quantity;
+    double discount;
 };
+
 class BulkBook: public ItemBook {
 public:
    BulkBook(const std::string &book = "", double sales_price = 0.0, double qty = 0, 
