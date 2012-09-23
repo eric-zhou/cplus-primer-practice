@@ -52,6 +52,8 @@ protected:
    double price;
 };
 
+class DiscItem: public ItemBook {
+};
 class BulkBook: public ItemBook {
 public:
    BulkBook(const std::string &book = "", double sales_price = 0.0, double qty = 0, 
