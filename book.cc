@@ -138,7 +138,8 @@ void printPrice1(ItemBook *book)
 class SalesItem {
 public:
     SalesItem():p(0), use(new std::size_t(1)) { }
-    explicit SalesItem(const ItemBook&);
+    //explicit SalesItem(const ItemBook&);
+    SalesItem(const ItemBook&);
     SalesItem(const SalesItem &item):p(item.p), use(item.use) {
         std::cout << "call copy construtor of SalesItem" << std::endl;
         ++*use;
@@ -204,12 +205,16 @@ public:
     typedef set_type::const_iterator const_iter;
     //construtor 
     Basket():items(compare) { }
+    ~Basket() {
+        std::cout << "call destrutor of Basket" << std::endl;
+    }
 
     //call copy construtor of Itembook to genarate a template Itembook 
+    //then convert Itembook object to SalesItem
     void addItem(const SalesItem &item) {
         std::cout << "call addItem" << std::endl;
-        //call copy construtor of item
-        items.insert(item);
+        //call copy construtor of SalesItem 
+        //items.insert(item);
         std::cout << "call addItem end" << std::endl;
         //call destrutor of SalesItem
     }
